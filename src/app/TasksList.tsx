@@ -50,8 +50,8 @@ export default async function TasksList({ skip }: Props) {
             "pointer-events-none cursor-not-allowed"
           }`}
         >
-          <ArrowLeftIcon className="w-5 h-5 rotate-180" />
           Next
+          <ArrowLeftIcon className="w-5 h-5 rotate-180" />
         </Link>
       </div>
       <div className="w-full flex flex-col items-center gap-4">
@@ -127,9 +127,8 @@ function TaskItem({ task }: { task: Task }) {
             task.isCompleted && "line-through text-green-700"
           }`}
           disabled
-        >
-          {task.description}
-        </textarea>
+          defaultValue={task.description}
+        ></textarea>
         <div className="flex flex-row justify-between items-center">
           <p className="text-sm text-slate-400">
             Last Updated:{" "}
