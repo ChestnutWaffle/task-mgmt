@@ -11,15 +11,12 @@ export async function taskCreate(formData: FormData) {
 
   if (!session) return;
 
-  console.log(session.user.id);
-
   const title = formData.get("title");
   const description = formData.get("description");
   const deadline = formData.get("deadline");
 
   // console.log({ title, description, deadline });
   if (!title || !description || !deadline) {
-    console.log("no form data");
     return;
   }
 
@@ -55,7 +52,6 @@ export async function taskEdit(
   const description = formData.get("description");
 
   if (!taskSlug || !title || !deadline || !description) {
-    console.log("no form data");
     return;
   }
 
@@ -90,7 +86,6 @@ export async function taskDelete(
   const confirmationString = formData.get("del_confirmation");
 
   if (!taskSlug || !confirmationString) {
-    console.log("no form data");
     return;
   }
 

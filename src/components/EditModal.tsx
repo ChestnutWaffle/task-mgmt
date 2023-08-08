@@ -62,6 +62,7 @@ export function EditModal({
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
           </div>
           <div className=" flex flex-col gap-2">
@@ -73,6 +74,7 @@ export function EditModal({
               id="deadline"
               value={dateToDateInput(deadline)}
               onChange={(e) => setDeadline(new Date(e.target.value))}
+              min={dateToDateInput(deadline)}
             />
           </div>
           <div className="flex flex-col gap-2">

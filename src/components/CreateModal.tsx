@@ -4,6 +4,7 @@ import { AddIcon, RemoveIcon, TaskAddIcon } from "@/components/icons";
 import SubmitButton from "@/components/SubmitButton";
 import { useState } from "react";
 import Modal from "./Modal";
+import { dateToDateInput } from "@/lib/utils";
 
 export default function CreateModal() {
   const [open, setOpen] = useState(false);
@@ -44,6 +45,7 @@ export default function CreateModal() {
                 type="text"
                 name="title"
                 id="title"
+                required
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -53,6 +55,8 @@ export default function CreateModal() {
                 type="datetime-local"
                 name="deadline"
                 id="deadline"
+                min={dateToDateInput(new Date())}
+                required
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -62,6 +66,7 @@ export default function CreateModal() {
                 name="description"
                 id="description"
                 maxLength={2500}
+                required
               />
               <span className="text-xs text-slate-400">Limit: 2500 words</span>
             </div>

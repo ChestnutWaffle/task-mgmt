@@ -8,6 +8,7 @@ import { ArrowLeftIcon, CheckFillIcon, TrashIcon } from "@/components/icons";
 import CompleteButton from "@/components/CompleteButton";
 import { EditModal } from "@/components/EditModal";
 import Link from "next/link";
+import DateDisplay from "@/components/DateDisplay";
 
 interface Props {
   skip: number;
@@ -98,26 +99,32 @@ function TaskItem({ task }: { task: Task }) {
               }`}
             >
               Deadline:{" "}
-              {task.deadline.toLocaleString("en-US", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-              })}
-            </p>
-            {task.completedAt && (
-              <p className="text-right">
-                Completed:{" "}
-                {task.completedAt.toLocaleString("en-US", {
+              <DateDisplay
+                date={task.deadline}
+                dateLocaleStringOptions={{
                   day: "2-digit",
                   month: "short",
                   year: "numeric",
                   hour: "2-digit",
                   minute: "2-digit",
                   second: "2-digit",
-                })}
+                }}
+              />
+            </p>
+            {task.completedAt && (
+              <p className="text-right">
+                Completed:{" "}
+                <DateDisplay
+                  date={task.completedAt}
+                  dateLocaleStringOptions={{
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                  }}
+                />
               </p>
             )}
           </div>
@@ -132,14 +139,17 @@ function TaskItem({ task }: { task: Task }) {
         <div className="flex flex-row justify-between items-center">
           <p className="text-sm text-slate-400">
             Last Updated:{" "}
-            {task.updatedAt.toLocaleString("en-US", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-            })}
+            <DateDisplay
+              date={task.updatedAt}
+              dateLocaleStringOptions={{
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+              }}
+            />
           </p>
           <div className="col-start-5 flex flex-row justify-end">
             <div className="flex items-center">
