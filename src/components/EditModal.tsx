@@ -34,7 +34,17 @@ export function EditModal({
   const [description, setDescription] = useState(taskDescription);
 
   async function submitForm(formData: FormData) {
-    await taskEdit(taskUid, taskSlug, formData);
+    const dateString = formData.get("deadline");
+
+    console.log(dateString);
+
+    if (!dateString) return;
+
+    const dateISOString = new Date(dateString.toString()).toISOString();
+
+    console.log(dateISOString);
+
+    await taskEdit(dateISOString, taskUid, taskSlug, formData);
     closeModal();
   }
 

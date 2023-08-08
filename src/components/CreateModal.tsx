@@ -13,7 +13,11 @@ export default function CreateModal() {
   const closeModal = () => setOpen(false);
 
   async function submitForm(formData: FormData) {
-    await taskCreate(formData);
+    const dateString = formData.get("deadline");
+
+    if (!dateString) return;
+
+    await taskCreate(dateString.toString(), formData);
     (document.getElementById("form") as HTMLFormElement).reset();
     closeModal();
   }

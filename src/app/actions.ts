@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 
-export async function taskCreate(formData: FormData) {
+export async function taskCreate(dateString: string, formData: FormData) {
   const session = await getServerSession(authOptions);
 
   if (!session) return;
@@ -26,7 +26,7 @@ export async function taskCreate(formData: FormData) {
     data: {
       title: title.toString(),
       description: description.toString(),
-      deadline: new Date(deadline.toString()).toISOString(),
+      deadline: new Date(dateString).toISOString(),
       userId: session.user?.id!,
     },
   });
@@ -37,6 +37,7 @@ export async function taskCreate(formData: FormData) {
 }
 
 export async function taskEdit(
+  dateString: string,
   taskUid: string,
   taskSlug: string,
   formData: FormData
@@ -52,13 +53,14 @@ export async function taskEdit(
   const description = formData.get("description");
 
   if (!taskSlug || !title || !deadline || !description) {
+    console.log("no form data");
     return;
   }
 
   await db.task.update({
     data: {
       title: title.toString(),
-      deadline: new Date(deadline.toString()).toISOString(),
+      deadline: new Date(dateString).toISOString(),
       description: description.toString(),
       isCompleted: false,
       completedAt: null,
