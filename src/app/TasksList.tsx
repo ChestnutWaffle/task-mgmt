@@ -129,13 +129,13 @@ function TaskItem({ task }: { task: Task }) {
             )}
           </div>
         </div>
-        <textarea
-          className={`col-span-5 p-2 my-2 bg-slate-700 rounded-lg ${
+        <pre
+          className={`overflow-y-auto h-20 resize-y col-span-5 p-2 my-2 font-sans bg-slate-700 rounded-lg ${
             task.isCompleted && "line-through text-green-700"
           }`}
-          disabled
-          defaultValue={task.description}
-        ></textarea>
+        >
+          {task.description}
+        </pre>
         <div className="flex flex-row justify-between items-center">
           <p className="text-sm text-slate-400">
             Last Updated:{" "}
